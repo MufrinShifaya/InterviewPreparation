@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EB System - Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Management Portal</h2>
+        
+        <div class="admin-section" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 20px;">
+            <h3>Step 1: Assign Meter to User</h3>
+            <input type="number" id="targetUserId" placeholder="User ID (Check MySQL for this)">
+            <input type="text" id="meterNum" placeholder="New Meter Number (e.g. MTR002)">
+            <select id="mType" style="width: 100%; padding: 10px; margin: 10px 0;">
+                <option value="RESIDENTIAL">RESIDENTIAL</option>
+                <option value="COMMERCIAL">COMMERCIAL</option>
+                <option value="INDUSTRIAL">INDUSTRIAL</option>
+            </select>
+            <button onclick="addMeter()" style="background-color: #3498db;">Assign Meter</button>
+        </div>
+
+        <div class="admin-section" style="border: 1px solid #ddd; padding: 15px;">
+            <h3>Step 2: Generate Bill for Meter</h3>
+            <input type="number" id="targetMeterId" placeholder="Meter ID">
+            <input type="number" id="unitsConsumed" placeholder="Enter Units (e.g. 150)">
+            <button onclick="generateBillAdmin()">Generate Bill</button>
+        </div>
+    </div>
+    <nav class="navbar">
+    <div class="nav-logo">EB System</div>
+    <div class="nav-links">
+        <a href="index.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="dashboard.html">My Dashboard</a>
+        <a href="admin.html" class="admin-link">Admin Portal</a>
+    </div>
+</nav>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bills</title>
+</head>
+<body>
+
+<h2>Electricity Bills</h2>
+
+<table border="1" id="billTable">
+    <tr>
+        <th>Bill ID</th>
+        <th>Units</th>
+        <th>Amount</th>
+        <th>Status</th>
+    </tr>
+</table>
+<nav class="navbar">
+    <div class="nav-logo">EB System</div>
+    <div class="nav-links">
+        <a href="index.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="dashboard.html">My Dashboard</a>
+        <a href="admin.html" class="admin-link">Admin Portal</a>
+    </div>
+</nav>
+<script>
+fetch("http://localhost:8080/bill/all")
+.then(res => res.json())
+.then(data => {
+
+    let table = document.getElementById("billTable");
+
+    data.forEach(bill => {
+        let row = table.insertRow();
+        row.innerHTML = `
+            <td>${bill.billId}</td>
+            <td>${bill.units}</td>
+            <td>${bill.amount}</td>
+            <td>${bill.status}</td>
+        `;
+    });
+
+});
+</script>
+
+</body>
+</html>

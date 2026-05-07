@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+    <title>EB System - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Electricity Billing Login</h2>
+        <input type="text" id="phone" placeholder="Phone Number">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p id="message"></p>
+    </div>
+<nav class="navbar">
+    <div class="nav-logo">EB System</div>
+    <div class="nav-links">
+        <a href="index.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="dashboard.html">My Dashboard</a>
+        <a href="admin.html">Admin Portal</a>
+    </div>
+</nav>
+    <script>
+        async function login() {
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('http://localhost:8080/user/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ phone, password })
+            });
+
+            const result = await response.text(); // Your service returns a String
+            if (result === "Login successful") {
+                localStorage.setItem('userPhone', phone); // Save user info
+                window.location.href = 'dashboard.html';
+            } else {
+                document.getElementById('message').innerText = "Login Failed: " + result;
+            }
+        }
+    </script>
+</body>
+</html>
