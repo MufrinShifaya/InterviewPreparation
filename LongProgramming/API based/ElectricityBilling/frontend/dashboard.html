@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="loadBills()">
+    <nav>
+        <h2>Welcome to EB Portal</h2>
+        <button onclick="logout()">Logout</button>
+    </nav>
+    <nav class="navbar">
+    <div class="nav-logo">EB System</div>
+    <div class="nav-links">
+        <a href="index.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="dashboard.html">My Dashboard</a>
+        <a href="admin.html" class="admin-link">Admin Portal</a>
+    </div>
+</nav>
+
+    <div class="container">
+        <h3>Your Electricity Bills</h3>
+        <table id="billTable">
+            <thead>
+                <tr>
+                    <th>Bill ID</th>
+                    <th>Units</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script>
+        async function loadBills() {
+            // Hardcoded user ID for now since your API needs it
+            // In a real app, you'd get this from the login response
+            const response = await fetch('http://localhost:8080/bill/user/1');
+            const bills = await response.json();
+            
+            const tbody = document.querySelector('#billTable tbody');
+            bills.forEach(bill => {
+                const row = `<tr>
+                    <td>${bill.billId}</td>
+                    <td>${bill.units}</td>
+                    <td>₹${bill.amount}</td>
+                    <td>${bill.status}</td>
+                    <td>${bill.status === 'UNPAID' ? `<button onclick="pay(${bill.billId})">Pay Now</button>` : 'N/A'}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        async function pay(id) {
+            await fetch(`http://localhost:8080/bill/pay/${id}`, { method: 'PUT' });
+            alert("Payment Successful!");
+            location.reload();
+        }
+
+        function logout() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
