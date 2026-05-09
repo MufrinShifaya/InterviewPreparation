@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:Arial, Helvetica, sans-serif; }
+        body { background:#eef2ff; }
+
+        header { background:#1e293b; color:white; text-align:center; padding:25px; }
+        header p { color:#94a3b8; margin-top:5px; }
+
+        nav {
+            background:#0f172a;
+            padding:14px 20px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+        }
+        nav a {
+            color:white;
+            text-decoration:none;
+            margin-right:20px;
+            font-weight:bold;
+        }
+        nav a:hover { color:#38bdf8; }
+
+        .logout-btn {
+            background:#ef4444;
+            color:white;
+            border:none;
+            padding:8px 18px;
+            border-radius:5px;
+            cursor:pointer;
+            font-weight:bold;
+        }
+        .logout-btn:hover { background:#dc2626; }
+
+        .container { width:90%; margin:30px auto; }
+
+        .card {
+            background:white;
+            padding:25px;
+            margin-bottom:25px;
+            border-radius:10px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+        }
+        .card h2 { margin-bottom:20px; color:#1e293b; }
+
+        .info-grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+            gap:15px;
+        }
+        .info-item label {
+            font-weight:bold;
+            color:#64748b;
+            font-size:13px;
+            display:block;
+            margin-bottom:4px;
+        }
+        .info-item span { font-size:16px; color:#1e293b; }
+
+        .percentage-box {
+            font-size:60px;
+            font-weight:bold;
+            color:#2563eb;
+            text-align:center;
+            padding:20px;
+        }
+
+        .stats-grid {
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:15px;
+            text-align:center;
+        }
+        .stat {
+            background:#f8fafc;
+            padding:20px;
+            border-radius:8px;
+            border:1px solid #e2e8f0;
+        }
+        .stat h3 { color:#64748b; font-size:13px; margin-bottom:8px; }
+        .stat p  { font-size:32px; font-weight:bold; color:#1e293b; }
+
+        footer { background:#0f172a; color:#94a3b8; text-align:center; padding:15px; margin-top:20px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>JJ College Of Engineering And Technology</h1>
+    <p>Student Dashboard</p>
+</header>
+
+<nav>
+    <div>
+        <a href="student.html">Dashboard</a>
+        <a href="attendance.html">My Attendance</a>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+</nav>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Student Details</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <label>Student ID</label>
+                <span id="studentId">Loading...</span>
+            </div>
+            <div class="info-item">
+                <label>Name</label>
+                <span id="studentName">Loading...</span>
+            </div>
+            <div class="info-item">
+                <label>Department</label>
+                <span id="department">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Overall Attendance</h2>
+        <div class="percentage-box" id="percentage">Loading...</div>
+    </div>
+
+    <div class="card">
+        <h2>Attendance Summary</h2>
+        <div class="stats-grid">
+            <div class="stat">
+                <h3>Total Classes</h3>
+                <p id="totalPeriods">-</p>
+            </div>
+            <div class="stat">
+                <h3>Present</h3>
+                <p id="present" style="color:#22c55e;">-</p>
+            </div>
+            <div class="stat">
+                <h3>Absent</h3>
+                <p id="absent" style="color:#ef4444;">-</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 JJ College Of Engineering And Technology</p>
+</footer>
+
+<script src="student.js"></script>
+</body>
+</html>
