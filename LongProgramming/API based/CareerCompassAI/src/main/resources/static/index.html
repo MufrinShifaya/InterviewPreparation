@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerCompassAI - Career Guidance System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <!-- AUTH SCREEN -->
+    <div id="authScreen" class="card">
+        <h1>🎯 CareerCompass AI</h1>
+        <p class="subtitle">Your AI-Powered Career Guide</p>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchAuthMode('login')">Login</button>
+            <button class="tab-btn" onclick="switchAuthMode('register')">Register</button>
+        </div>
+
+        <div class="form-group">
+            <input type="text" id="nameInput" placeholder="Full Name" style="display:none;">
+            <input type="email" id="emailInput" placeholder="Email" required>
+            <input type="password" id="passwordInput" placeholder="Password" required>
+            <button onclick="handleAuth()" id="authBtn">Login</button>
+        </div>
+        <div id="authError"></div>
+    </div>
+
+    <!-- LOCATIONS SCREEN -->
+    <div id="locationsScreen" class="card hidden">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <h2>📍 Select a Location</h2>
+        <div class="grid" id="locationsList"></div>
+    </div>
+
+    <!-- COMPANIES SCREEN -->
+    <div id="companiesScreen" class="card hidden">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <button class="back-btn" onclick="goBack('locations')">← Back</button>
+        <h2 id="companiesTitle">🏢 IT Companies</h2>
+        <div class="response-box">
+            <pre id="companiesContent">Loading...</pre>
+        </div>
+        <div class="action-btns">
+            <input type="text" id="companyInput" placeholder="Enter company name">
+            <button onclick="selectCompany()">Get Roles →</button>
+        </div>
+        <div id="companiesError"></div>
+    </div>
+
+    <!-- ROLES SCREEN -->
+    <div id="rolesScreen" class="card hidden">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <button class="back-btn" onclick="goBack('companies')">← Back</button>
+        <h2 id="rolesTitle">💼 Roles</h2>
+        <div class="response-box">
+            <pre id="rolesContent">Loading...</pre>
+        </div>
+        <div class="action-btns">
+            <input type="text" id="roleInput" placeholder="Enter role name">
+            <button onclick="selectRole()">Get Details →</button>
+        </div>
+        <div id="rolesError"></div>
+    </div>
+
+    <!-- DETAILS SCREEN -->
+    <div id="detailsScreen" class="card hidden">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <button class="back-btn" onclick="goBack('roles')">← Back</button>
+        <h2 id="detailsTitle">📋 Role Details</h2>
+
+        <div class="detail-tabs">
+            <button class="detail-btn" onclick="fetchDetails('details')">Details</button>
+            <button class="detail-btn" onclick="fetchDetails('rounds')">Interview</button>
+            <button class="detail-btn" onclick="fetchDetails('questions')">Questions</button>
+            <button class="detail-btn" onclick="fetchDetails('roadmap')">Roadmap</button>
+            <button class="detail-btn" onclick="fetchDetails('resume')">Resume</button>
+            <button class="detail-btn" onclick="fetchDetails('projects')">Projects</button>
+        </div>
+
+        <div class="response-box">
+            <pre id="detailsContent">Loading...</pre>
+        </div>
+        <div id="detailsError"></div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
